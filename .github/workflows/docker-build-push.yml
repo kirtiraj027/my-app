@@ -2,7 +2,7 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]  # Change to 'master' if your repo's default branch is master
+    branches: [ "main" ]  # Change to 'master' if your default branch is master
 
 jobs:
   build-and-push:
