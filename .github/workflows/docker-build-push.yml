@@ -24,5 +24,5 @@ jobs:
           context: .
           push: true
           tags: |
-            kirtiraj027/my-image:latest
-            kirtiraj027/my-image:${{ github.sha }}
+            kirtiraj027/metta-ci-base:latest
+            kirtiraj027/metta-ci-base:${{ github.sha }}
