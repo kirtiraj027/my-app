@@ -19,9 +19,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: .
+          file: .github/workflows/Dockerfile
           push: true
           tags: |
             kirtiraj027/metta-ci-base:latest
