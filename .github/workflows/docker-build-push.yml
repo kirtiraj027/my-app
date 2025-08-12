@@ -2,8 +2,14 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]  # Change to 'master' if your default branch is master
-
+    branches:
+      - main
+  schedule:
+    # Runs every 7 days at 00:00 UTC
+    - cron: "0 0 */7 * *"
+    # For every 15 days, uncomment the below line instead
+    # - cron: "0 0 */15 * *"
+    
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
