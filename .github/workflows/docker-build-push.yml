@@ -5,9 +5,9 @@ on:
     branches:
       - main
   schedule:
-    # Runs every 7 days at 00:00 UTC
+    # Runs every 7 days:-
     - cron: "0 0 */7 * *"
-    # For every 15 days, uncomment the below line instead
+    # For every 15 days:-
     # - cron: "0 0 */15 * *"
     
 jobs:
