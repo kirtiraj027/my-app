@@ -1,16 +1,15 @@
-FROM ubuntu:latest
 FROM python:3.9-slim
 
-apt-get update && apt-get install -y \
+# Install dependencies
+RUN apt-get update && apt-get install -y \
     curl \
     wget \
     unzip \
     openjdk-11-jre \
-    python3 \
-    python3-pip \
     git \
     ca-certificates \
     gnupg \
+    lsb-release \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Trivy
@@ -27,6 +26,4 @@ RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-s
     && ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner \
     && rm sonar-scanner-cli-*.zip
 
-# Default command
 CMD [ "bash" ]
-
