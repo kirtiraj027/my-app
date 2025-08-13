@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: .github/workflows/Dockerfile
+          file: .github/workflows/Dockerfile2
           push: true
           tags: |
             kirtiraj027/metta-ci-base:latest
