@@ -1,0 +1,36 @@
+# Base image - Ubuntu latest
+FROM ubuntu:latest
+
+# Set environment variables to avoid prompts during package installs
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update and install dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    unzip \
+    openjdk-11-jre \
+    python3.9 \
+    python3-pip \
+    git \
+    ca-certificates \
+    gnupg \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Trivy
+RUN wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor > /usr/share/keyrings/trivy.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -cs) main" \
+       | tee /etc/apt/sources.list.d/trivy.list \
+    && apt-get update \
+    && apt-get install -y trivy
+
+# Install SonarQube Scanner
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip \
+    && unzip sonar-scanner-cli-*.zip -d /opt \
+    && mv /opt/sonar-scanner-* /opt/sonar-scanner \
+    && ln -s /opt/sonar-scanner/bin/sonar-scanner /usr/local/bin/sonar-scanner \
+    && rm sonar-scanner-cli-*.zip
+
+# Default command
+CMD [ "bash" ]
+
